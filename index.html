@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MiTienda - E-commerce de productos tecnológicos con catálogo dinámico y carrito de compras.">
+    <meta name="keywords" content="tecnologia, tienda online, gadgets, ecommerce, talento tech">
+    <meta name="author" content="Santiago Daniel Bruno">
+    <title>E-commerce Front-End</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- HEADER: Navegación y Contador de Carrito -->
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <h1>MiTienda</h1>
+            </div>
+            
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__list">
+                    <li><a href="#inicio" class="nav__link">Inicio</a></li>
+                    <li><a href="#productos" class="nav__link">Productos</a></li>
+                    <li><a href="#reseñas" class="nav__link">Reseñas</a></li>
+                    <li><a href="#multimedia" class="nav__link">Conocenos</a></li>
+                    <li><a href="#contacto" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <button class="cart-btn" id="cart-toggle" aria-label="Abrir carrito de compras">
+                🛒 Carrito (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN: Contenido Principal -->
+    <main id="main-content">
+        <!-- Hero / Inicio -->
+        <section id="inicio" class="hero">
+            <div class="container hero__content">
+                <h2>Tecnología a tu alcance</h2>
+                <p>Descubrí las mejores ofertas en electrónica y accesorios con entrega garantizada.</p>
+                <a href="#productos" class="btn btn--primary">Explorar catálogo</a>
+            </div>
+        </section>
+
+        <!-- Productos: Cards renderizadas vía Fetch y maquetadas con Flexbox -->
+        <section id="productos" class="productos">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nuestros Productos</h2>
+                    <p>Catálogo actualizado en tiempo real desde API REST</p>
+                </div>
+
+                <div id="loading" class="loading-state">Cargando catálogo de productos...</div>
+                <div id="productos-container" class="productos__grid">
+                    <!-- Cards inyectadas dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reseñas: Grid Layout -->
+        <section id="reseñas" class="reseñas">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Opiniones de Clientes</h2>
+                </div>
+                <div class="reseñas__grid">
+                    <article class="card-review">
+                        <h3>Martín Gómez</h3>
+                        <p class="estrellas">★★★★★</p>
+                        <p>"Excelente atención y los productos llegaron en tiempo y forma. Súper recomendado."</p>
+                    </article>
+                    <article class="card-review">
+                        <h3>Valeria Rios</h3>
+                        <p class="estrellas">★★★★★</p>
+                        <p>"El teclado y los auriculares funcionan excelente. Muy buena relación precio-calidad."</p>
+                    </article>
+                    <article class="card-review">
+                        <h3>Lucas Fernández</h3>
+                        <p class="estrellas">★★★★☆</p>
+                        <p>"La compra fue rápida y sencilla. El proceso de seguimiento funcionó perfecto."</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multimedia: Video HTML5 e Iframe -->
+        <section id="multimedia" class="multimedia">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Sobre Nosotros</h2>
+                </div>
+                <div class="multimedia__grid">
+                    <div class="multimedia__item">
+                        <h3>Demostración de Envío</h3>
+                        <video controls width="100%">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video HTML5.
+                        </video>
+                    </div>
+                    <div class="multimedia__item">
+                        <h3>Nuestra Sucursal Central</h3>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016829163273!2d-58.38375908477038!3d-34.60373888045943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses!2sar!4v1650000000000" 
+                            width="100%" 
+                            height="280" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            title="Ubicación de MiTienda en Google Maps">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto: Formulario con Formspree + Media Queries -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contacto</h2>
+                    <p>Escribinos y te responderemos a la brevedad</p>
+                </div>
+
+                <form id="contacto-form" class="contacto__form" action="https://formspree.io/f/mnqkwrjd" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                        <span class="error-msg" id="error-nombre"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        <span class="error-msg" id="error-email"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta..." required></textarea>
+                        <span class="error-msg" id="error-mensaje"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
+                    <p id="form-status" class="form-status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal / Drawer de Carrito -->
+    <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+        <div class="cart-drawer__header">
+            <h3>Carrito de Compras</h3>
+            <button id="cart-close" class="cart-drawer__close" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-drawer__items">
+            <!-- Items inyectados vía DOM -->
+        </div>
+        <div class="cart-drawer__footer">
+            <div class="cart-drawer__total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button id="cart-checkout" class="btn btn--primary btn--block">Simular Compra</button>
+        </div>
+    </aside>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>&copy; 2026 MiTienda. Proyecto de Integración Front-End - Talento Tech.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>
